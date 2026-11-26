@@ -46,6 +46,7 @@
                 @endif 
             </form>
           </div>
+         
           <div>
             <table>
                 <thead>
@@ -59,11 +60,14 @@
                 <thead>
                 <tbody>
                     @foreach ($kurirs as $kurir)
-                    <tr onclick="window.location='{{ route('show', $kurir->id) }}'">
-                        <td style="px-2 py-2">{{ $kurir->id}}</td>
+                    <tr>
+                        <td style="px-2 py-2" onclick="window.location='{{ route('show', $kurir->id) }}'">{{ $kurir->id}}</td>
                         <td style="px-2 py-2">{{ $kurir->nama_kurir }}</td>
                         <td style="px-2 py-2">{{ $kurir->no_telp_kurir }}</td>
                         <td style="px-5 py-2">{{ $kurir->email_kurir }}</td>
+                        <td>
+                            <button onclick="window.location='{{ route('editshow', $kurir->id) }}'">Edit</button>
+                        </td>
                     </tr>
                     @endforeach
                 <tbody>
@@ -93,6 +97,38 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
+          </div>
+          @endif
+          @if ($editget != '' || $editget != null)
+          <div>
+            <form action="{{ route('update') }}" method="POST" >
+                 @csrf
+                <p>ID</p>
+                <input type="text" name="id" id="id" class="border" value="{{ $editget->id }}"readonly>
+                <p>Nama Kurir</p>
+                <input type="text" name="nama_kurir" id="nama_kurir" class="border" value="{{ $editget->nama_kurir }}">
+                <p>Email Kurir</p>
+                <input type="text" name="email_kurir" id="email_kurir" class="border" value="{{ $editget->email_kurir }}">
+                <p>Alamat Kurir</p>
+                <input type="text" name="alamat_kurir" id="alamat_kurir" class="border" value="{{ $editget->alamat_kurir }}">
+                <p>Nomor Telepon</p>
+                <input type="text" name="no_telp_kurir" id="no_telp_kurir" class="border" value="{{ $editget->no_telp_kurir }}">
+                <p>Level </P>
+                <select name="level_kurir" id="level_kurir"class="border">
+                    @if ($editget->level_kurir)
+                    <option value="{{ $editget->level_kurir }}">{{ $editget->level_kurir }}</option>
+                    @endif 
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button type="submit" class="border">Submit</button>
+                @if (session("success"))
+                    {{ session("success") }}
+                @endif 
+            </form>
           </div>
           @endif
     </body>

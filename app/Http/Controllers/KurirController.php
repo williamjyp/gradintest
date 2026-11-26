@@ -9,14 +9,23 @@ class KurirController extends Controller
 {
     public function index(): View{
         $showget = null;
+        $editget = null;
         $courier = Courier::orderBy('nama_kurir')->get();
-        return view('welcome', ['kurirs'=>$courier, 'showget' => $showget]);   
+        return view('welcome', ['kurirs'=>$courier, 'showget' => $showget, 'editget' => $editget]);   
     }
 
     public function show($id) {
         $showget = Courier::where('id',$id)->first();
+        $editget = null;
         $courier = Courier::orderBy('nama_kurir')->get();
-        return view('welcome', ['kurirs'=>$courier, 'showget'=>$showget]);
+        return view('welcome', ['kurirs'=>$courier, 'showget'=>$showget, 'editget' => $editget]);
+    }
+
+    public function editshow($id) {
+        $showget = null;
+        $editget = Courier::where('id',$id)->first();
+        $courier = Courier::orderBy('nama_kurir')->get();
+        return view('welcome', ['kurirs'=>$courier, 'showget'=>$showget, 'editget'=>$editget]);
     }
 
     public function store(Request $request){
