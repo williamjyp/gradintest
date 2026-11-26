@@ -15,3 +15,8 @@ Route::get('/kurir/show/{id}', [KurirController::class,'show'])->name('show');
 Route::get('/kurir/editshow/{id}', [KurirController::class,'editshow'])->name('editshow');
 Route::post('/kurir/update', [KurirController::class,'update'])->name('update');
 Route::get('/kurir/destroy/{id}', [KurirController::class,'destroy'])->name('destroy');
+Route::get('/kurir/uruttanggal', [KurirController::class,'uruttanggal'])->name('uruttanggal');
+Route::get('/kurir/search', [KurirController::class,'search'])->name('search');
+Route::get('/kurir/filter', [KurirController::class,'filter'])->name('filter');
+
+

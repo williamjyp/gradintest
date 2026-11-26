@@ -48,6 +48,22 @@
           </div>
          
           <div>
+            <div>
+            <form action="{{ route('index')}}">
+            <button type="submit" class="border">Urutkan berdasarkan nama </button>
+            </form>
+            <form action="{{ route('uruttanggal')}}">
+            <button type="submit" class="border"> Urutkan berdasarkan tanggal didaftarkan </button>
+            </form>
+            </div>
+            <div>
+                <form action="{{route('search')}}"> 
+                    <input type="text" class="border" id="nama_kurir" name="nama_kurir"placeholder="cari"/>
+                </form>
+                <form action="{{route('filter')}}"> 
+                   <button type="submit" class="border">Filter Level menjadi 2&5 saja</button>
+                </form>
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -62,7 +78,7 @@
                     @foreach ($kurirs as $kurir)
                     <tr>
                         <td style="px-2 py-2" onclick="window.location='{{ route('show', $kurir->id) }}'">{{ $kurir->id}}</td>
-                        <td style="px-2 py-2">{{ $kurir->nama_kurir }}</td>
+                        <td style="px-2 py-2" onclick="window.location='{{ route('show', $kurir->id) }}'>{{ $kurir->nama_kurir }}</td>
                         <td style="px-2 py-2">{{ $kurir->no_telp_kurir }}</td>
                         <td style="px-5 py-2">{{ $kurir->email_kurir }}</td>
                         <td class="">
@@ -71,6 +87,9 @@
                         </td>
                     </tr>
                     @endforeach
+
+                    {{ $kurirs->links() }}
+
                 <tbody>
             </table>
           </div>

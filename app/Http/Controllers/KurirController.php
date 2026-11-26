@@ -10,21 +10,21 @@ class KurirController extends Controller
     public function index(): View{
         $showget = null;
         $editget = null;
-        $courier = Courier::orderBy('nama_kurir')->get();
+        $courier = Courier::orderBy('nama_kurir')->paginate(10);
         return view('welcome', ['kurirs'=>$courier, 'showget' => $showget, 'editget' => $editget]);   
     }
 
     public function show($id) {
         $showget = Courier::where('id',$id)->first();
         $editget = null;
-        $courier = Courier::orderBy('nama_kurir')->get();
+        $courier = Courier::orderBy('nama_kurir')->paginate(10);
         return view('welcome', ['kurirs'=>$courier, 'showget'=>$showget, 'editget' => $editget]);
     }
 
     public function editshow($id) {
         $showget = null;
         $editget = Courier::where('id',$id)->first();
-        $courier = Courier::orderBy('nama_kurir')->get();
+        $courier = Courier::orderBy('nama_kurir')->paginate(10);
         return view('welcome', ['kurirs'=>$courier, 'showget'=>$showget, 'editget'=>$editget]);
     }
 
@@ -76,5 +76,25 @@ class KurirController extends Controller
         return redirect()
             ->route('index')
             ->with('success', 'Kurir berhasil dihapus.');
+    }
+
+    public function uruttanggal(): View {
+        $showget = null;
+        $editget = null;
+        $courier = Courier::orderBy('created_at')->paginate(10);
+        return view('welcome', ['kurirs'=>$courier, 'showget' => $showget, 'editget' => $editget]);   
+    }
+
+    public function search(Request $request){
+        $showget = null;
+        $editget = null;
+        $courier = Courier::where('nama_kurir', 'like', "%".$request->nama_kurir."%")->paginate(10);
+        return view('welcome', ['kurirs'=>$courier, 'showget' => $showget, 'editget' => $editget]); 
+    }
+    public function filter(){
+        $showget = null;
+        $editget = null;
+        $courier = Courier::where('level_kurir', 3)->orWhere('level_kurir',2)->paginate(10);
+        return view('welcome', ['kurirs'=>$courier, 'showget' => $showget, 'editget' => $editget]); 
     }
 }
