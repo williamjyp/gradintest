@@ -53,7 +53,8 @@
                         <th style="px-2 py-2">#ID</th>
                         <th style="px-2 py-2">Nama Kurir</th>
                         <th style="px-2 py-2">Nomor Kurir<th>
-                        <th style="px-2 py-2">Email Kurir<th>
+                        <th style="px-5 py-2">Email Kurir<th>
+                        <th style="px-5 py-2">Aksi</th>
                     </tr>
                 <thead>
                 <tbody>
@@ -71,30 +72,27 @@
           @if ($showget != null || $showget != "")
           <div>
             
-            <form action="{{ route('update') }}" method="POST" >
-                 @csrf
+            
                 <p>Nama Kurir</p>
                 
-                <input type="text" name="nama_kurir" id="nama_kurir" class="border">
+                <input type="text" name="nama_kurir" id="nama_kurir" class="border" value="{{ $showget->nama_kurir }}" readonly>
                 <p>Email Kurir</p>
-                <input type="text" name="email_kurir" id="email_kurir" class="border">
+                <input type="text" name="email_kurir" id="email_kurir" class="border" value="{{ $showget->email_kurir }}" readonly>
                 <p>Alamat Kurir</p>
-                <input type="text" name="alamat_kurir" id="alamat_kurir" class="border">
+                <input type="text" name="alamat_kurir" id="alamat_kurir" class="border" value="{{ $showget->alamat_kurir }}" readonly>
                 <p>Nomor Telepon</p>
-                <input type="text" name="no_telp_kurir" id="no_telp_kurir" class="border">
+                <input type="text" name="no_telp_kurir" id="no_telp_kurir" class="border" value="{{ $showget->no_telp_kurir }}" readonly>
                 <p>Level </P>
-                <select name="level_kurir" id="level_kurir"class="border">
+                <select name="level_kurir" id="level_kurir"class="border" disabled>
+                    @if ($showget->level_kurir)
+                    <option value="{{ $showget->level_kurir }}">{{ $showget->level_kurir }}</option>
+                    @endif 
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                <button type="submit" class="border">Submit</button>
-                @if (session("success"))
-                    {{ session("success") }}
-                @endif 
-            </form>
           </div>
           @endif
     </body>

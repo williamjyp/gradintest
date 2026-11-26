@@ -9,15 +9,14 @@ class KurirController extends Controller
 {
     public function index(): View{
         $showget = null;
-        $courier = Courier::get();
+        $courier = Courier::orderBy('nama_kurir')->get();
         return view('welcome', ['kurirs'=>$courier, 'showget' => $showget]);   
     }
 
-    public function show(Request $request) {
-        $showget = Courier::where('id',$request->id)->first();
-        $courier = Courier::get();
+    public function show($id) {
+        $showget = Courier::where('id',$id)->first();
+        $courier = Courier::orderBy('nama_kurir')->get();
         return view('welcome', ['kurirs'=>$courier, 'showget'=>$showget]);
-        
     }
 
     public function store(Request $request){
