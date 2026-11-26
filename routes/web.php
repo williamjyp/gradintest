@@ -14,4 +14,4 @@ Route::post('/kurir/store', [KurirController::class,'store'])->name('store');
 Route::get('/kurir/show/{id}', [KurirController::class,'show'])->name('show');
 Route::get('/kurir/editshow/{id}', [KurirController::class,'editshow'])->name('editshow');
 Route::post('/kurir/update', [KurirController::class,'update'])->name('update');
-Route::post('/kurir/destroy', [KurirController::class,'destroy'])->name('destroy');
+Route::get('/kurir/destroy/{id}', [KurirController::class,'destroy'])->name('destroy');

@@ -70,7 +70,11 @@ class KurirController extends Controller
             ->route('index')
             ->with('success', 'Kurir berhasil diedit.');
     }
-    public function destroy(Courier $kurir){
-        $kurir->delete();
+    public function destroy($id){
+        Courier::where('id',$id)->delete();
+
+        return redirect()
+            ->route('index')
+            ->with('success', 'Kurir berhasil dihapus.');
     }
 }

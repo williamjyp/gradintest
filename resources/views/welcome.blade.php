@@ -65,8 +65,9 @@
                         <td style="px-2 py-2">{{ $kurir->nama_kurir }}</td>
                         <td style="px-2 py-2">{{ $kurir->no_telp_kurir }}</td>
                         <td style="px-5 py-2">{{ $kurir->email_kurir }}</td>
-                        <td>
+                        <td class="">
                             <button onclick="window.location='{{ route('editshow', $kurir->id) }}'">Edit</button>
+                            <button onclick="window.location='{{ route('destroy', $kurir->id) }}'">Destroy</button>
                         </td>
                     </tr>
                     @endforeach
